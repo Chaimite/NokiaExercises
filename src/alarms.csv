@@ -1,0 +1,10 @@
+﻿alarmNumber;type;text;state;timestamp
+1354;processingError;network failure;cancelled;01/01/2019 10:20
+1287;equipment;bandwidth is full;new;01/01/2019 10:30
+3457;equipment;communicationProtocolFailure;updated;01/01/2019 10:38
+5654;processingError;softwareError;updated;01/01/2019 10:40
+3457;equipment;communicationProtocolFailure;new;01/01/2019 10:32
+2598;physicalViolation;SNM duds coding failure;updated;01/01/2019 10:34
+2598;physicalViolation;SNM duds coding failure;cancelled;01/01/2019 10:58
+5654;processingError;softwareError;new;01/01/2019 10:36
+1287;equipment;bandwidth is full;cancelled;01/01/2019 10:56

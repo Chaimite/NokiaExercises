@@ -1,0 +1,6 @@
+﻿alarmNumber;type;action
+1354;processingError;print alarm timestamp
+1287;equipment;ask user to input a number
+3457;equipment;ask user to input a number
+5654;processingError;print alarm timestamp
+2598;physicalViolation;ask user to input a letter
