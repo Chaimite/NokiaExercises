@@ -1,13 +1,18 @@
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Reader;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FileReader
 {
- 
+   private String filePath;
+
+   public FileReader(String filePath)
+   {
+      this.filePath = filePath;
+   }
 
    // Get field names contained in .csv file
    public static String[] getFieldNames(String filePath)
@@ -17,8 +22,8 @@ public class FileReader
       try
       {
          Scanner inputStream = new Scanner(file);
-         String line = inputStream.nextLine();      
-         values = line.split(";");        
+         String line = inputStream.nextLine();
+         values = line.split(";");
          inputStream.close();
       }
       catch (FileNotFoundException e)
@@ -27,19 +32,18 @@ public class FileReader
       }
       return values;
    }
-   
-   // Return alarmNumber values   
+
+   // Get alarm number
    public static ArrayList<String> getAlarmNumber(String filePath)
    {
       File file = new File(filePath);
-      FileReader fr = null;
       ArrayList<String> parsedValues = new ArrayList<String>();
       try
       {
          Scanner inputStream = new Scanner(file);
-         inputStream.next();      
+         inputStream.nextLine();
          while (inputStream.hasNextLine())
-         {            
+         {
             String data = inputStream.nextLine();
             String[] values = data.split(";");
             parsedValues.add(values[0].toString());
@@ -52,24 +56,61 @@ public class FileReader
       }
       return parsedValues;
    }
-   
-   
+
+   // Get alarm status
+   public static ArrayList<String> getAlarmStatus(String filePath)
+   {
+      File file = new File(filePath);
+      ArrayList<String> parsedValues = new ArrayList<String>();
+      try
+      {
+         Scanner inputStream = new Scanner(file);
+         inputStream.nextLine();
+         while (inputStream.hasNextLine())
+         {
+            String data = inputStream.nextLine();
+            String[] values = data.split(";");
+            parsedValues.add(values[3]);
+         }
+         inputStream.close();
+      }
+      catch (FileNotFoundException e)
+      {
+         e.printStackTrace();
+      }
+      return parsedValues;
+   }
+
    // Check if state is cancelled
-   public boolean isStateNotCanceled(String state)
+   public static boolean isAlarmActive(String state)
    {
       boolean value = true;
-      if (!state.equals("cancelled"))
+      if (state.equals("cancelled"))
       {
-         value = true;
+         value = false;
       }
       return value;
    }
-   
-   public static void main(String[]args) {
-//      String filePath = System.getProperty("user.dir") + "\\alarms.csv";
-      String filePath = "C:\\Users\\Adriano\\eclipse-workspace\\Nokia_Exercise\\src\\alarms.csv";
-//      System.out.println(getFieldNames(filePath)[0]);
+
+   public static void main(String[] args)
+   {
+       Path path = FileSystems.getDefault().getPath(".").toAbsolutePath();
+       String filePath =  path.toString() + "\\src\\alarms.csv";
+       
+
       System.out.println(getAlarmNumber(filePath));
+      System.out.println(getAlarmStatus(filePath));
+      ArrayList<String> gAS = getAlarmStatus(filePath);
+      ArrayList<String> gAN = getAlarmNumber(filePath);
+      
+      
+      System.out.println("Active alarms:");
+      for(int i = 0; i< gAS.size();i++) {
+         if(isAlarmActive(gAS.get(i)) == true) {
+            System.out.println(gAN.get(i));
+      }
+
+      }
 
    }
 }
