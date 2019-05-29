@@ -1,21 +1,19 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileReader
+public class FileOutput
 {
    private String filePath;
 
-   public FileReader(String filePath)
+   public FileOutput(String filePath)
    {
       this.filePath = filePath;
    }
 
    // Get field names contained in .csv file
-   public static String[] getFieldNames(String filePath)
+   public String[] getFieldNames(String filePath)
    {
       File file = new File(filePath);
       String[] values = null;
@@ -34,7 +32,7 @@ public class FileReader
    }
 
    // Get alarm number
-   public static ArrayList<String> getAlarmNumber(String filePath)
+   public ArrayList<String> getAlarmNumber(String filePath)
    {
       File file = new File(filePath);
       ArrayList<String> parsedValues = new ArrayList<String>();
@@ -58,7 +56,7 @@ public class FileReader
    }
 
    // Get alarm status
-   public static ArrayList<String> getAlarmStatus(String filePath)
+   public ArrayList<String> getAlarmStatus(String filePath)
    {
       File file = new File(filePath);
       ArrayList<String> parsedValues = new ArrayList<String>();
@@ -82,7 +80,7 @@ public class FileReader
    }
 
    // Check if state is cancelled
-   public static boolean isAlarmActive(String state)
+   public boolean isAlarmActive(String state)
    {
       boolean value = true;
       if (state.equals("cancelled"))
@@ -90,27 +88,5 @@ public class FileReader
          value = false;
       }
       return value;
-   }
-
-   public static void main(String[] args)
-   {
-       Path path = FileSystems.getDefault().getPath(".").toAbsolutePath();
-       String filePath =  path.toString() + "\\src\\alarms.csv";
-       
-
-      System.out.println(getAlarmNumber(filePath));
-      System.out.println(getAlarmStatus(filePath));
-      ArrayList<String> gAS = getAlarmStatus(filePath);
-      ArrayList<String> gAN = getAlarmNumber(filePath);
-      
-      
-      System.out.println("Active alarms:");
-      for(int i = 0; i< gAS.size();i++) {
-         if(isAlarmActive(gAS.get(i)) == true) {
-            System.out.println(gAN.get(i));
-      }
-
-      }
-
    }
 }
