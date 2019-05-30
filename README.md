@@ -1,4 +1,5 @@
 # NokiaExercises
+This is an exercise for an interview at Nokia.
 The program must be scalable for Gigabytes of information and easy maintenance.
 
 Execrcise 1
