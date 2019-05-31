@@ -9,6 +9,16 @@ import java.util.Scanner;
 import model.Alarm;
 import util.FileOutput;
 
+         /**
+          * @author Adriano
+          * 
+          * I am assuming that for the equipment error type, the user will introduce a value in the 
+          * range of -50000 to 50000.
+          * 
+          * For letter input, only upper and lower letters can be used.
+          * 
+          * Empty variables ha
+          */
 public class Exercise3
 {
 
@@ -42,23 +52,22 @@ public class Exercise3
                flag = true;
                while (flag)
                {
-                  System.out.println(
-                        "Please insert a number between -5000 and 5000: ");
+                  System.out.println("Please insert a number between -50000 and 50000: ");
                   try
                   {
                      number = input.nextInt();
-                     if (!(number >= -5000 && number <= 5000))
+                     if (!(number >= -50000 && number <= 50000))
                      {
                         throw new InputMismatchException();
                      }
 
                      flag = false;
-                     input.nextLine();
                   }
                   catch (InputMismatchException e)
                   {
                      System.err.println("Invalid Number");
                   }
+                  input.nextLine();
                }
             }
             else if (alarm.getType().equals("physicalViolation"))

@@ -4,7 +4,14 @@ package test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import util.FileOutput;
 
 
 public class TestMain
@@ -14,6 +21,10 @@ public class TestMain
    {
      
       testchars();
+      testdates();
+      testsearch();
+      printer();
+      
    }
    public static void testchars()
    {
@@ -37,9 +48,11 @@ public class TestMain
       {
          Date d = df.parse(testDate);
          Date d2 = df.parse(testDate2);
+         long miliSeconds = d.getTime();
          System.out.println(d.toString());
          System.out.println(d2.toString());
          System.out.println(d.after(d2));
+         System.out.println("time in mili seconds: " + miliSeconds);
       }
       catch (ParseException e)
       {
@@ -48,5 +61,41 @@ public class TestMain
       }
       
       
+   }
+   public static void testsearch() {
+      ArrayList<Integer> data = new ArrayList<Integer>();
+      data.add(50);
+      data.add(9);
+      data.add(900);
+      data.add(250);
+      data.add(2);
+      Collections.sort(data);
+      int finder = Collections.binarySearch(data, 9);
+      System.out.println("Location is at: " + finder);
+      
+   }
+   public static void printer() {
+     Scanner input = new Scanner (System.in);
+      int number;
+      boolean flag = true;
+      while (flag)
+      {
+         System.out.println("Please insert a number between -50000 and 50000: ");
+         try
+         {
+            number = input.nextInt();
+            if (!(number >= -50000 && number <= 50000))
+            {
+               throw new InputMismatchException();
+            }
+
+            flag = false;
+         }
+         catch (InputMismatchException e)
+         {
+            System.err.println("Invalid Number");
+         }
+         input.nextLine();
+      }
    }
 }

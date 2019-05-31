@@ -39,6 +39,12 @@ public class FileOutput
          {
             String data = inputStream.nextLine();
             String[] values = data.split(";");
+            
+            // check if the alarm already exists
+            // if so create a State object with timeStamp and state.
+            // add the state object into the Alarm.
+            // otherwise create a new Alarm object and add it into the Array
+            
             Alarm a = new Alarm(values[0], values[1], values[2], values[3], values[4]);
             alarms.add(a);
          }

@@ -5,7 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Alarm
+
+public class Alarm 
 {
    private String alarmNum;
    private String type;
@@ -95,5 +96,14 @@ public class Alarm
    public boolean isBefore(Date timestamp)
    {
       return this.timeStamp.before(timestamp);
+   }
+
+   public boolean equals(Object obj)
+   {
+      if (((Alarm) obj).getAlarmNum().equals(this.alarmNum))
+      {
+         return true;
+      }
+      return false;
    }
 }
