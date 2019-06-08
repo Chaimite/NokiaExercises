@@ -45,7 +45,7 @@ public class Exercise3
             if (alarm.getType().equals("processingError"))
             {
                System.out.println(
-                     alarm.getAlarmNum() + "->" + alarm.getTimeStamp());
+                     alarm.getAlarmNum() + "->" + alarm.getLatestState().getTimeStamp());
             }
             else if (alarm.getType().equals("equipment"))
             {

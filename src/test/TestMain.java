@@ -11,6 +11,8 @@ import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import model.Alarm;
+import model.State;
 import util.FileOutput;
 
 
@@ -20,12 +22,24 @@ public class TestMain
    public static void main(String[] args)
    {
      
-      testchars();
-      testdates();
-      testsearch();
-      printer();
-      
+//      testchars();
+//      testdates();
+//      testsearch();
+//      printer();
+      testAlarmWithPQStates();
    }
+   
+   public static void testAlarmWithPQStates()
+   {
+      Alarm a = new Alarm("1234", "equipment","just a message","new","01/01/2019 10:20");
+      a.addState(State.CANCELLED, "01/01/2019 10:50");
+      a.addState(State.UPDATE, "01/01/2019 10:22");
+      
+      System.out.println(a.getLatestState().getTimeStamp());
+
+   }
+   
+   
    public static void testchars()
    {
       char a = 'a';

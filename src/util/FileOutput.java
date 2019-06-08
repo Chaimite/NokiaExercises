@@ -2,6 +2,7 @@ package util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import model.Alarm;
@@ -45,8 +46,19 @@ public class FileOutput
             // add the state object into the Alarm.
             // otherwise create a new Alarm object and add it into the Array
             
-            Alarm a = new Alarm(values[0], values[1], values[2], values[3], values[4]);
-            alarms.add(a);
+            int searchResult = Collections.binarySearch(alarms, new Alarm(values[0]));
+            
+            if(searchResult < 0 )
+            {
+               Alarm a = new Alarm(values[0], values[1], values[2], values[3], values[4]);
+               alarms.add(a);               
+               Collections.sort(alarms);
+            }
+            else
+            {
+               Alarm b = alarms.get(searchResult);
+               b.addState(values[3], values[4]);
+            }
          }
          inputStream.close();
       }
