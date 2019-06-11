@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Stack;
 
 import model.Alarm;
 import model.State;
@@ -26,7 +27,8 @@ public class TestMain
 //      testdates();
 //      testsearch();
 //      printer();
-      testAlarmWithPQStates();
+//      testAlarmWithPQStates();
+      converterTest();
    }
    
    public static void testAlarmWithPQStates()
@@ -111,5 +113,20 @@ public class TestMain
          }
          input.nextLine();
       }
+   }
+   public static void converterTest() {
+      int number = 12345;
+      String asAString = Integer.toString(number);
+//      System.out.println("This the number converted into a string: " + asAString);
+      Stack<Character> trying = new Stack<Character>();
+     for(int i = 0; i < asAString.length(); i++) {
+        trying.push(asAString.charAt(i));
+       
+        
+     }
+     System.out.println(trying);
+     System.out.println(trying.peek());
+     trying.pop();
+     System.out.println(trying.peek());
    }
 }

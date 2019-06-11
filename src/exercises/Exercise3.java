@@ -1,7 +1,5 @@
 package exercises;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -19,15 +17,12 @@ import util.FileOutput;
           * 
           * Empty variables ha
           */
-public class Exercise3
+public class Exercise3 implements FilePath
 {
 
    public static void main(String[] args)
    {
       boolean flag = true;
-      // Defines the path for the file on any computer (except mac)
-      Path path = FileSystems.getDefault().getPath(".").toAbsolutePath();
-      String filePath = path.toString() + "\\src\\alarms.csv";
 
       // Data input from csv file
       ArrayList<Alarm> alarms = FileOutput.getAlarmsFromFile(filePath);

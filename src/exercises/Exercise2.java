@@ -1,14 +1,12 @@
 package exercises;
 
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 import model.Alarm;
 import model.State;
 import util.FileOutput;
 
-public class Exercise2
+public class Exercise2 implements FilePath
 {
 
    public static void main(String[] args)
@@ -22,14 +20,9 @@ public class Exercise2
       // Alarm
       // probably array of states you will need in Alarm class.
 
-      // Defines the path for the file on any computer (except mac)
-      Path path = FileSystems.getDefault().getPath(".").toAbsolutePath();
-      String filePath = path.toString() + "\\src\\alarms.csv";
-
       ArrayList<Alarm> alarms = FileOutput.getAlarmsFromFile(filePath);
       StringBuffer sb = new StringBuffer();
-      
-      
+       
       for (Alarm alarm : alarms)
       {
          ArrayList<State> states = alarm.getStates();
